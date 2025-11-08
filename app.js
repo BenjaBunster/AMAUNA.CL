@@ -241,6 +241,17 @@ function showFormMessage(type, text){
   div.className = 'form-msg ' + (type==='success'? 'form-msg--success':'form-msg--error')
   div.textContent = text
   c.appendChild(div)
+  // launch confetti on success if the library is available
+  if(type === 'success'){
+    try{
+      if(typeof window !== 'undefined' && typeof window.confetti === 'function'){
+        // nice burst
+        window.confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } })
+        // small follow-up bursts for visual richness
+        setTimeout(()=>{ window.confetti({ particleCount: 40, spread: 100, origin: { y: 0.6 } }) }, 250)
+      }
+    }catch(e){ console.warn('Confetti failed', e) }
+  }
   // auto-hide after 6s
   setTimeout(()=>{ if(c.contains(div)) c.removeChild(div) }, 6000)
 }
