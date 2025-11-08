@@ -144,11 +144,11 @@ function setMinDate(){
 }
 
 async function handleSubmit(e){
+  // Always prevent default to avoid navigation or reload
+  e.preventDefault()
   const form = document.getElementById('bookingForm')
   const action = form.getAttribute('action') || ''
   const external = action.startsWith('http') && !action.startsWith(window.location.origin)
-  // If form posts to an external endpoint (like FormSubmit), do not prevent default submission
-  if(!external) e.preventDefault()
 
   const name = el('name').value.trim()
   const email = el('email').value.trim()
@@ -157,11 +157,11 @@ async function handleSubmit(e){
   const date = el('date').value
   const time = el('time').value
 
-  if(!name || !email || !date || !time){ if(!external) alert('Completa los campos requeridos'); return }
+  if(!name || !email || !date || !time){ showFormMessage('error','Completa los campos requeridos'); return }
   const slotDate = new Date(date + 'T' + time)
-  if(slotDate < new Date()){ if(!external) alert('No puedes agendar en el pasado'); return }
-  if(!isWeekday(date)){ if(!external) alert('Solo se pueden agendar días de lunes a viernes'); return }
-  if(!isValidSlot(time)){ if(!external) alert('Horas válidas: 08:00 - 20:00 en pasos de 1 hora (ej: 09:00)'); return }
+  if(slotDate < new Date()){ showFormMessage('error','No puedes agendar en el pasado'); return }
+  if(!isWeekday(date)){ showFormMessage('error','Solo se pueden agendar días de lunes a viernes'); return }
+  if(!isValidSlot(time)){ showFormMessage('error','Horas válidas: 08:00 - 20:00 en pasos de 1 hora (ej: 09:00)'); return }
 
   const appt = {name,email,phone,service,date,time,createdAt:new Date().toISOString()}
 
@@ -169,12 +169,10 @@ async function handleSubmit(e){
   if(await backendAvailable()){
     try{
       const created = await fetchJson(API_BASE + '/appointments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(appt)})
-      if(!external) alert('Reserva enviada al servidor y guardada.')
-      if(!external){
-        document.getElementById('bookingForm').reset()
-        setMinDate()
-        await renderAppointments()
-      }
+      showFormMessage('success','Reserva enviada al servidor y guardada.')
+      document.getElementById('bookingForm').reset()
+      setMinDate()
+      await renderAppointments()
       return
     }catch(e){console.warn('post to backend failed, saving local',e)}
   }
@@ -188,16 +186,39 @@ async function handleSubmit(e){
   list.push(appt)
   await saveAppointments(list)
   await renderAppointments()
-
-  // If the form posts externally, allow the browser to submit (we didn't preventDefault()).
+  // If the form posts externally (e.g. FormSubmit), send via fetch and show inline message
   if(external){
-    return
+    try{
+      // send form as FormData to external endpoint to avoid navigation
+      const fd = new FormData(form)
+      // ensure we include the same fields that we saved locally
+      // (FormData already contains form inputs because they have name attributes)
+      const resp = await fetch(action, { method: 'POST', body: fd })
+      if(resp.ok){
+        showFormMessage('success', 'Reserva enviada. Revisa tu correo para confirmación.')
+        form.reset()
+        setMinDate()
+        return
+      }else{
+        let text = ''
+        try{ text = await resp.text() }catch(e){}
+        showFormMessage('error', 'Error al enviar la reserva. Intenta de nuevo.')
+        console.warn('Form submit failed', resp.status, text)
+        return
+      }
+    }catch(err){
+      console.error('Submit error', err)
+      showFormMessage('error', 'Error de red al enviar la reserva. Se guardó localmente.')
+      form.reset()
+      setMinDate()
+      return
+    }
   }
 
-  // otherwise reset the form and notify
+  // otherwise reset the form and notify (local save path)
   document.getElementById('bookingForm').reset()
   setMinDate()
-  alert('Reserva guardada localmente. Para confirmación por correo o sincronización, ejecuta el backend.')
+  showFormMessage('success', 'Reserva guardada localmente.')
 }
 
 async function init(){
@@ -211,3 +232,15 @@ async function init(){
 }
 
 window.addEventListener('DOMContentLoaded', init)
+
+function showFormMessage(type, text){
+  const c = document.getElementById('formMessage')
+  if(!c) return
+  c.innerHTML = ''
+  const div = document.createElement('div')
+  div.className = 'form-msg ' + (type==='success'? 'form-msg--success':'form-msg--error')
+  div.textContent = text
+  c.appendChild(div)
+  // auto-hide after 6s
+  setTimeout(()=>{ if(c.contains(div)) c.removeChild(div) }, 6000)
+}

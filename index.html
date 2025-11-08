@@ -86,7 +86,6 @@
         <form id="bookingForm" class="booking-form" autocomplete="off" action="https://formsubmit.co/benjamin.bunster@gmail.com" method="POST">
           <!-- FormSubmit expects input names; we add hidden settings (_subject, _next, _captcha) -->
           <input type="hidden" name="_subject" value="Nueva reserva AMAUNA">
-          <input type="hidden" name="_next" value="/thank-you.html">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
 
@@ -106,6 +105,7 @@
             <button type="submit" class="btn">Reservar</button>
             <button type="button" id="clearBtn" class="btn ghost">Limpiar</button>
           </div>
+          <div id="formMessage" aria-live="polite"></div>
         </form>
 
         <aside class="booking-list">

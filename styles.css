@@ -41,6 +41,9 @@ html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Arial,sans-s
 .app-item small{display:block;color:var(--muted)}
 .list-actions{display:flex;gap:8px;margin-top:8px}
 .note{font-size:0.9rem;color:var(--muted);margin-top:10px}
+.form-msg{margin-top:12px;padding:12px;border-radius:8px;font-weight:600}
+.form-msg--success{background:linear-gradient(90deg,#e6f7f3,#f0fff9);color:#06654f;border:1px solid rgba(6,101,79,0.08)}
+.form-msg--error{background:linear-gradient(90deg,#fff5f5,#fffafa);color:#9b1c1c;border:1px solid rgba(155,28,28,0.08)}
 .site-footer{padding:24px 0;border-top:1px solid #f1f3f5;margin-top:30px}
 @media (max-width:880px){
   .form-grid{grid-template-columns:1fr}
