@@ -17,10 +17,8 @@ html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Arial,sans-s
 .logo{width:48px;height:48px}
 .nav a{margin-left:16px;color:var(--muted);text-decoration:none}
 .hero{padding:48px 0;text-align:left}
-.hero-inner{display:flex;align-items:center;gap:24px}
-.hero-visual img{width:280px;max-width:40vw;border-radius:14px}
-.hero-copy h1{font-size:2rem;margin:0 0 12px;color:#04333a}
-.hero-copy p{color:var(--muted);max-width:720px}
+.hero h1{font-size:2rem;margin:0 0 12px;color:#04333a}
+.hero p{color:var(--muted);max-width:720px}
 .cta{display:inline-block;margin-top:16px;background:var(--accent);color:white;padding:12px 18px;border-radius:10px;text-decoration:none}
 .servicios{padding:36px 0}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
