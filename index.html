@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AMAUNA — Terapias en Chile</title>
+  <meta name="description" content="AMAUNA - Terapias de meditación, respiración y psicología en Chile. Agenda tu hora online.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#">
+        <img src="assets/logo.svg" alt="AMAUNA logo" class="logo">
+        <span class="brand-text">AMAUNA</span>
+      </a>
+      <nav class="nav">
+        <a href="#servicios">Servicios</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#agendar">Agendar</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-inner">
+          <div class="hero-visual">
+            <img src="assets/hero.svg" alt="Respiración y calma" />
+          </div>
+          <div class="hero-copy">
+            <h1>AMAUNA — Equilibrio a través de la respiración y la mente</h1>
+            <p>Sesiones de meditación, breathwork y psicología diseñadas para acompañarte en tu proceso. Ofrecemos sesiones presenciales y online para todo Chile.</p>
+            <a class="cta" href="#agendar">Agendar hora</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicios" class="container servicios">
+      <h2>Nuestros servicios</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Meditación guiada</h3>
+          <p>Sesiones para cultivar presencia, reducir ansiedad y mejorar la calidad del sueño.</p>
+        </article>
+        <article class="card">
+          <h3>Breathwork (Respiración)</h3>
+          <p>Técnicas estructuradas de respiración para liberar tensión física y emocional.</p>
+        </article>
+        <article class="card">
+          <h3>Psicoterapia</h3>
+          <p>Apoyo profesional en procesos personales, duelo, ansiedad y manejo emocional.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="sobre" class="container about">
+      <h2>Sobre AMAUNA</h2>
+      <p>AMAUNA es una marca chilena dedicada a acompañar a las personas mediante prácticas integrativas: meditación, respiración consciente (breathwork) y psicoterapia. Nuestro enfoque es seguro, empático y basado en evidencia clínica y prácticas contemplativas.</p>
+    </section>
+
+    <section id="testimonios" class="container testimonials">
+      <h2>Testimonios</h2>
+      <div class="grid">
+        <div class="card">
+          <p>"Las sesiones de breathwork me ayudaron a soltar tensiones que llevaba años acumulando. Gracias AMAUNA."</p>
+          <small>— Camila, Santiago</small>
+        </div>
+        <div class="card">
+          <p>"Mejoré mi sueño y aprendí herramientas para la ansiedad. Atención cálida y profesional."</p>
+          <small>— Pablo, Valparaíso</small>
+        </div>
+        <div class="card">
+          <p>"La combinación de psicoterapia y meditación fue transformadora para mi proceso."</p>
+          <small>— María, Concepción</small>
+        </div>
+      </div>
+    </section>
+
+    <section id="agendar" class="container agendar">
+      <h2>Agendar hora</h2>
+      <div class="form-grid">
+        <form id="bookingForm" class="booking-form" autocomplete="off">
+          <label>Nombre completo <input type="text" id="name" required></label>
+          <label>Email <input type="email" id="email" required></label>
+          <label>Teléfono <input type="tel" id="phone"></label>
+          <label>Servicio
+            <select id="service">
+              <option value="Meditacion">Meditación guiada</option>
+              <option value="Breathwork">Breathwork (Respiración)</option>
+              <option value="Psicologia">Psicoterapia</option>
+            </select>
+          </label>
+          <label>Fecha <input type="date" id="date" required></label>
+          <label>Hora <input type="time" id="time" required min="08:00" max="20:00" step="3600"></label>
+          <div class="actions">
+            <button type="submit" class="btn">Reservar</button>
+            <button type="button" id="clearBtn" class="btn ghost">Limpiar</button>
+          </div>
+        </form>
+
+        <aside class="booking-list">
+          <h3>Agenda</h3>
+          <div id="appointments"></div>
+          <div class="list-actions">
+            <button id="exportCsv" class="btn small">Exportar CSV</button>
+            <button id="clearAll" class="btn small ghost">Borrar todo</button>
+          </div>
+        </aside>
+      </div>
+      <p class="note">Nota: Este es un sistema de reservas local. Para producción conecta con un backend o integraciones de calendario (Google Calendar).</p>
+    </section>
+
+    <section id="contacto" class="container contacto">
+      <h2>Contacto</h2>
+      <p>Escríbenos a <a href="mailto:contacto@amauna.cl">contacto@amauna.cl</a> o síguenos en redes (placeholder).</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> AMAUNA — Chile. Terapias de meditación, respiración y psicología.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

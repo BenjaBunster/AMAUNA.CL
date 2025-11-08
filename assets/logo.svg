@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="40" viewBox="0 0 300 80">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#67b7a7"/>
+      <stop offset="1" stop-color="#f19c9e"/>
+    </linearGradient>
+  </defs>
+  <rect width="300" height="80" rx="12" fill="none"/>
+  <g transform="translate(12,8)">
+    <circle cx="24" cy="24" r="20" fill="url(#g)" opacity="0.95"/>
+    <path d="M18 22c3 6 12 6 15 0" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.9"/>
+    <text x="64" y="36" font-family="Segoe UI, Arial" font-size="28" fill="#04333a">AMAUNA</text>
+  </g>
+</svg>
