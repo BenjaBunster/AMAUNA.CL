@@ -84,18 +84,24 @@
       <h2>Agendar hora</h2>
       <div class="form-grid">
         <form id="bookingForm" class="booking-form" autocomplete="off" action="https://formsubmit.co/benjamin.bunster@gmail.com" method="POST">
-          <label>Nombre completo <input type="text" id="name" required></label>
+          <!-- FormSubmit expects input names; we add hidden settings (_subject, _next, _captcha) -->
+          <input type="hidden" name="_subject" value="Nueva reserva AMAUNA">
+          <input type="hidden" name="_next" value="/thank-you.html">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+
+          <label>Nombre completo <input type="text" name="name" id="name" required></label>
           <label>Email <input type="email" name="email" id="email" required></label>
-          <label>Teléfono <input type="tel" id="phone"></label>
+          <label>Teléfono <input type="tel" name="phone" id="phone"></label>
           <label>Servicio
-            <select id="service">
+            <select id="service" name="service">
               <option value="Meditacion">Meditación guiada</option>
               <option value="Breathwork">Breathwork (Respiración)</option>
               <option value="Psicologia">Psicoterapia</option>
             </select>
           </label>
-          <label>Fecha <input type="date" id="date" required></label>
-          <label>Hora <input type="time" id="time" required min="08:00" max="20:00" step="3600"></label>
+          <label>Fecha <input type="date" name="date" id="date" required></label>
+          <label>Hora <input type="time" name="time" id="time" required min="08:00" max="20:00" step="3600"></label>
           <div class="actions">
             <button type="submit" class="btn">Reservar</button>
             <button type="button" id="clearBtn" class="btn ghost">Limpiar</button>

@@ -144,39 +144,57 @@ function setMinDate(){
 }
 
 async function handleSubmit(e){
-  e.preventDefault()
+  const form = document.getElementById('bookingForm')
+  const action = form.getAttribute('action') || ''
+  const external = action.startsWith('http') && !action.startsWith(window.location.origin)
+  // If form posts to an external endpoint (like FormSubmit), do not prevent default submission
+  if(!external) e.preventDefault()
+
   const name = el('name').value.trim()
   const email = el('email').value.trim()
   const phone = el('phone').value.trim()
   const service = el('service').value
   const date = el('date').value
   const time = el('time').value
-  if(!name || !email || !date || !time){alert('Completa los campos requeridos');return}
+
+  if(!name || !email || !date || !time){ if(!external) alert('Completa los campos requeridos'); return }
   const slotDate = new Date(date + 'T' + time)
-  if(slotDate < new Date()){alert('No puedes agendar en el pasado');return}
-  if(!isWeekday(date)){alert('Solo se pueden agendar días de lunes a viernes');return}
-  if(!isValidSlot(time)){alert('Horas válidas: 08:00 - 20:00 en pasos de 1 hora (ej: 09:00)');return}
-  // try backend first
+  if(slotDate < new Date()){ if(!external) alert('No puedes agendar en el pasado'); return }
+  if(!isWeekday(date)){ if(!external) alert('Solo se pueden agendar días de lunes a viernes'); return }
+  if(!isValidSlot(time)){ if(!external) alert('Horas válidas: 08:00 - 20:00 en pasos de 1 hora (ej: 09:00)'); return }
+
   const appt = {name,email,phone,service,date,time,createdAt:new Date().toISOString()}
+
+  // If a backend is available, prefer sending there
   if(await backendAvailable()){
     try{
       const created = await fetchJson(API_BASE + '/appointments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(appt)})
-      alert('Reserva enviada al servidor y guardada.')
-      document.getElementById('bookingForm').reset()
-      setMinDate()
-      await renderAppointments()
+      if(!external) alert('Reserva enviada al servidor y guardada.')
+      if(!external){
+        document.getElementById('bookingForm').reset()
+        setMinDate()
+        await renderAppointments()
+      }
       return
     }catch(e){console.warn('post to backend failed, saving local',e)}
   }
-  // fallback local
+
+  // fallback local save
   const list = await loadAppointments()
-  // prevent double booking on same date+time
   const conflict = list.find(a=>a.date===date && a.time===time)
-  if(conflict){if(!confirm('Ya existe una reserva en ese horario. ¿Deseas igual intentarlo?')) return}
+  if(conflict){ if(!confirm('Ya existe una reserva en ese horario. ¿Deseas igual intentarlo?')) return }
+
   appt.id = Date.now()
   list.push(appt)
   await saveAppointments(list)
   await renderAppointments()
+
+  // If the form posts externally, allow the browser to submit (we didn't preventDefault()).
+  if(external){
+    return
+  }
+
+  // otherwise reset the form and notify
   document.getElementById('bookingForm').reset()
   setMinDate()
   alert('Reserva guardada localmente. Para confirmación por correo o sincronización, ejecuta el backend.')
