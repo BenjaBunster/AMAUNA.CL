@@ -4,8 +4,15 @@
   "description": "Sitio AMAUNA con backend simple para reservas",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "vercel dev --listen 3000 || node server.js",
+    "build": "echo \"Preparing static output for Vercel\" && mkdir -p .vercel_build_output/static && cp -r index.html styles.css assets .vercel_build_output/static || true",
+    "vercel-build": "npm run build"
   },
+  "engines": {
+    "node": ">=18"
+  },
+  "private": false,
   "author": "AMAUNA",
   "license": "MIT",
   "dependencies": {
