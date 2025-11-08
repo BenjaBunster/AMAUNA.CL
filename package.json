@@ -10,7 +10,7 @@
     "vercel-build": "npm run build"
   },
   "engines": {
-    "node": ">=18"
+    "node": "22.x"
   },
   "private": false,
   "author": "AMAUNA",
