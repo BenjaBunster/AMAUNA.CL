@@ -1,12 +1,15 @@
 <!doctype html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>AMAUNA — Terapias en Chile</title>
-  <meta name="description" content="AMAUNA - Terapias de meditación, respiración y psicología en Chile. Agenda tu hora online.">
+  <meta name="description"
+    content="AMAUNA - Terapias de meditación, respiración y psicología en Chile. Agenda tu hora online.">
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <header class="site-header">
     <div class="container header-inner">
@@ -32,7 +35,8 @@
           </div>
           <div class="hero-copy">
             <h1>AMAUNA — Equilibrio a través de la respiración y la mente</h1>
-            <p>Sesiones de meditación, breathwork y psicología diseñadas para acompañarte en tu proceso. Ofrecemos sesiones presenciales y online para todo Chile.</p>
+            <p>Sesiones de meditación, breathwork y psicología diseñadas para acompañarte en tu proceso. Ofrecemos
+              sesiones presenciales y online para todo Chile.</p>
             <a class="cta" href="#agendar">Agendar hora</a>
           </div>
         </div>
@@ -59,14 +63,17 @@
 
     <section id="sobre" class="container about">
       <h2>Sobre AMAUNA</h2>
-      <p>AMAUNA es una marca chilena dedicada a acompañar a las personas mediante prácticas integrativas: meditación, respiración consciente (breathwork) y psicoterapia. Nuestro enfoque es seguro, empático y basado en evidencia clínica y prácticas contemplativas.</p>
+      <p>AMAUNA es una marca chilena dedicada a acompañar a las personas mediante prácticas integrativas: meditación,
+        respiración consciente (breathwork) y psicoterapia. Nuestro enfoque es seguro, empático y basado en evidencia
+        clínica y prácticas contemplativas.</p>
     </section>
 
     <section id="testimonios" class="container testimonials">
       <h2>Testimonios</h2>
       <div class="grid">
         <div class="card">
-          <p>"Las sesiones de breathwork me ayudaron a soltar tensiones que llevaba años acumulando. Gracias AMAUNA."</p>
+          <p>"Las sesiones de breathwork me ayudaron a soltar tensiones que llevaba años acumulando. Gracias AMAUNA."
+          </p>
           <small>— Camila, Santiago</small>
         </div>
         <div class="card">
@@ -83,7 +90,9 @@
     <section id="agendar" class="container agendar">
       <h2>Agendar hora</h2>
       <div class="form-grid">
-        <form id="bookingForm" class="booking-form" autocomplete="off" action="https://formsubmit.co/benjamin.bunster@gmail.com" method="POST">
+        <!-- CORREO WEB, DONDE LLAGN FORMULARIOS (SOLO EDIT CORR)-->
+        <form id="bookingForm" class="booking-form" autocomplete="off"
+          action="https://formsubmit.co/benjamin.bunster@gmail.com" method="POST">
           <!-- FormSubmit expects input names; we add hidden settings (_subject, _next, _captcha) -->
           <input type="hidden" name="_subject" value="Nueva reserva AMAUNA">
           <input type="hidden" name="_template" value="table">
@@ -100,7 +109,24 @@
             </select>
           </label>
           <label>Fecha <input type="date" name="date" id="date" required></label>
-          <label>Hora <input type="time" name="time" id="time" required min="08:00" max="20:00" step="3600"></label>
+          <label>Hora
+            <select id="time" name="time" required>
+              <option value="">Selecciona una hora</option>
+              <option value="08:00">08:00</option>
+              <option value="09:00">09:00</option>
+              <option value="10:00">10:00</option>
+              <option value="11:00">11:00</option>
+              <option value="12:00">12:00</option>
+              <option value="13:00">13:00</option>
+              <option value="14:00">14:00</option>
+              <option value="15:00">15:00</option>
+              <option value="16:00">16:00</option>
+              <option value="17:00">17:00</option>
+              <option value="18:00">18:00</option>
+              <option value="19:00">19:00</option>
+              <option value="20:00">20:00</option>
+            </select>
+          </label>
           <div class="actions">
             <button type="submit" class="btn">Reservar</button>
             <button type="button" id="clearBtn" class="btn ghost">Limpiar</button>
@@ -117,7 +143,8 @@
           </div>
         </aside>
       </div>
-      <p class="note">Nota: Este es un sistema de reservas local. Para producción conecta con un backend o integraciones de calendario (Google Calendar).</p>
+      <p class="note">Nota: Este es un sistema de reservas local. Para producción conecta con un backend o integraciones
+        de calendario (Google Calendar).</p>
     </section>
 
     <section id="contacto" class="container contacto">
@@ -135,4 +162,5 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="app.js" type="module"></script>
 </body>
+
 </html>
