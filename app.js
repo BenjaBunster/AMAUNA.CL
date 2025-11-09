@@ -300,6 +300,33 @@ async function init() {
   el('clearBtn').addEventListener('click', () => { document.getElementById('bookingForm').reset(); setMinDate() })
   el('clearAll').addEventListener('click', clearAll)
   el('exportCsv').addEventListener('click', exportCSV)
+  
+  // Initialize scroll animations
+  initScrollAnimations()
+}
+
+// Scroll animation observer
+function initScrollAnimations() {
+  const fadeElements = document.querySelectorAll('.fade-in-section')
+  
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+  }
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible')
+        // Optionally unobserve after animation to improve performance
+        observer.unobserve(entry.target)
+      }
+    })
+  }, observerOptions)
+  
+  fadeElements.forEach(element => {
+    observer.observe(element)
+  })
 }
 
 window.addEventListener('DOMContentLoaded', init)
