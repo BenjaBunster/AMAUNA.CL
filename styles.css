@@ -540,6 +540,31 @@ h2::after {
   border: 2px solid rgba(167, 211, 188, 0.4);
 }
 
+/* Info Trigger Button */
+.info-trigger {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  padding: 14px 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.05rem;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(167, 211, 188, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.info-trigger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(167, 211, 188, 0.4);
+}
+
+.info-trigger:active {
+  transform: translateY(0);
+}
+
 .booking-form label {
   display: block;
   margin-bottom: 10px;
@@ -569,6 +594,173 @@ h2::after {
 .booking-form textarea {
   resize: vertical;
   font-size: 0.95rem
+}
+
+/* Custom Diagnosticos Dropdown */
+.diagnosticos-wrapper {
+  margin-bottom: 15px;
+}
+
+.diagnosticos-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #372631;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.diagnosticos-trigger {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(167, 211, 188, 0.5);
+  background: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  color: #372631;
+  font-size: 0.95rem;
+}
+
+.diagnosticos-trigger:hover {
+  border-color: var(--primary);
+  background: rgba(167, 211, 188, 0.05);
+}
+
+.diagnosticos-trigger .arrow {
+  transition: transform 0.3s ease;
+  font-size: 0.8rem;
+  color: var(--primary);
+}
+
+.diagnosticos-trigger.active .arrow {
+  transform: rotate(180deg);
+}
+
+.diagnosticos-selected {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 0;
+}
+
+.diagnosticos-selected:empty {
+  display: none;
+}
+
+.selected-tag {
+  background: var(--primary);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  animation: slideIn 0.2s ease;
+}
+
+.selected-tag.nada-tag {
+  background: var(--accent);
+}
+
+.selected-tag .remove-tag {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.selected-tag .remove-tag:hover {
+  transform: scale(1.3);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.diagnosticos-dropdown {
+  display: none;
+  margin-top: 8px;
+  background: white;
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(55, 38, 49, 0.15);
+  animation: dropdownSlide 0.3s ease;
+}
+
+.diagnosticos-dropdown.active {
+  display: block;
+}
+
+@keyframes dropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.diagnostico-option {
+  display: flex !important;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 15px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  border-bottom: 1px solid rgba(167, 211, 188, 0.2);
+  margin-bottom: 0 !important;
+}
+
+.diagnostico-option:last-child {
+  border-bottom: none;
+}
+
+.diagnostico-option:hover {
+  background: rgba(167, 211, 188, 0.1);
+}
+
+.diagnostico-option input[type="checkbox"] {
+  width: auto !important;
+  margin: 3px 0 0 0 !important;
+  cursor: pointer;
+  flex-shrink: 0;
+  accent-color: var(--primary);
+}
+
+.diagnostico-option span {
+  flex: 1;
+  color: #372631;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.diagnostico-nada {
+  background: rgba(230, 95, 94, 0.05);
+}
+
+.diagnostico-nada:hover {
+  background: rgba(230, 95, 94, 0.1);
+}
+
+.diagnostico-nada input[type="checkbox"] {
+  accent-color: var(--accent);
 }
 
 .actions {
@@ -764,6 +956,154 @@ h2::after {
   transition: transform 1100ms cubic-bezier(.2, .8, .2, 1), opacity 1100ms ease;
   opacity: 1;
   transform: translateY(0) rotate(0deg)
+}
+
+/* Modal Consentimiento Informado */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(55, 38, 49, 0.85);
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 16px;
+  max-width: 700px;
+  width: 100%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-content h2 {
+  color: var(--accent);
+  text-align: center;
+  font-size: 1.6rem;
+  margin: 0;
+  padding: 25px 30px 20px;
+  border-bottom: 2px solid var(--primary);
+}
+
+.modal-body {
+  padding: 25px 30px;
+  overflow-y: auto;
+  flex: 1;
+  line-height: 1.7;
+}
+
+.modal-body p {
+  margin-bottom: 15px;
+  color: #372631;
+  font-size: 0.95rem;
+}
+
+.modal-body p strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.modal-body p:last-child {
+  margin-bottom: 0;
+}
+
+.modal-actions {
+  padding: 20px 30px;
+  border-top: 2px solid rgba(167, 211, 188, 0.3);
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.modal-actions .btn {
+  min-width: 140px;
+}
+
+/* Info Modal Specific Styles */
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  color: var(--accent);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.modal-close:hover {
+  transform: rotate(90deg);
+}
+
+.info-benefits {
+  background: linear-gradient(135deg, rgba(167, 211, 188, 0.1), rgba(203, 152, 195, 0.1));
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+  border-left: 4px solid var(--primary);
+}
+
+.info-benefits h3 {
+  color: var(--primary);
+  font-size: 1.2rem;
+  margin: 0 0 15px 0;
+}
+
+.info-benefits ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-benefits li {
+  padding: 8px 0;
+  font-size: 1rem;
+  color: #372631;
+  line-height: 1.6;
+}
+
+.info-invitation {
+  background: rgba(230, 95, 94, 0.08);
+  padding: 15px 20px;
+  border-radius: 8px;
+  border-left: 4px solid var(--accent);
+  font-weight: 500;
+  margin-top: 20px !important;
+  font-size: 1rem !important;
 }
 
 @media (max-width:880px) {

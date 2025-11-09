@@ -215,6 +215,12 @@ function renderBreathChart() {
 async function handleSubmit(e) {
   // Always prevent default to avoid navigation or reload
   e.preventDefault()
+  
+  // Show consent modal before processing
+  showConsentModal()
+}
+
+async function processReservation() {
   const form = document.getElementById('bookingForm')
   const action = form.getAttribute('action') || ''
   const external = action.startsWith('http') && !action.startsWith(window.location.origin)
@@ -301,8 +307,91 @@ async function init() {
   el('clearAll').addEventListener('click', clearAll)
   el('exportCsv').addEventListener('click', exportCSV)
   
+  // Initialize diagnostics checkboxes exclusivity
+  initDiagnosticsCheckboxes()
+  
+  // Initialize consent modal
+  initConsentModal()
+  
+  // Initialize info modal
+  initInfoModal()
+  
   // Initialize scroll animations
   initScrollAnimations()
+}
+
+// Handle diagnostics checkboxes (NADA is exclusive)
+function initDiagnosticsCheckboxes() {
+  const trigger = document.getElementById('diagnosticosTrigger')
+  const dropdown = document.getElementById('diagnosticosDropdown')
+  const selectedContainer = document.getElementById('diagnosticosSelected')
+  const nadaCheckbox = document.getElementById('diagnostico-nada')
+  const allCheckboxes = document.querySelectorAll('input[name="diagnosticos"]')
+  const otherCheckboxes = document.querySelectorAll('input[name="diagnosticos"]:not(#diagnostico-nada)')
+  
+  if (!trigger || !dropdown) return
+  
+  // Toggle dropdown
+  trigger.addEventListener('click', () => {
+    dropdown.classList.toggle('active')
+    trigger.classList.toggle('active')
+  })
+  
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!trigger.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.classList.remove('active')
+      trigger.classList.remove('active')
+    }
+  })
+  
+  // Update selected tags
+  function updateSelectedTags() {
+    selectedContainer.innerHTML = ''
+    
+    allCheckboxes.forEach(checkbox => {
+      if (checkbox.checked) {
+        const tag = document.createElement('div')
+        tag.className = 'selected-tag'
+        if (checkbox.value === 'NADA') {
+          tag.className += ' nada-tag'
+        }
+        
+        const text = document.createElement('span')
+        text.textContent = checkbox.value
+        
+        const remove = document.createElement('span')
+        remove.className = 'remove-tag'
+        remove.textContent = '×'
+        remove.addEventListener('click', () => {
+          checkbox.checked = false
+          updateSelectedTags()
+        })
+        
+        tag.appendChild(text)
+        tag.appendChild(remove)
+        selectedContainer.appendChild(tag)
+      }
+    })
+  }
+  
+  // Handle checkbox changes
+  allCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+      // If NADA is checked, uncheck all others
+      if (checkbox === nadaCheckbox && checkbox.checked) {
+        otherCheckboxes.forEach(cb => {
+          cb.checked = false
+        })
+      }
+      // If any other is checked, uncheck NADA
+      else if (checkbox !== nadaCheckbox && checkbox.checked && nadaCheckbox) {
+        nadaCheckbox.checked = false
+      }
+      
+      updateSelectedTags()
+    })
+  })
 }
 
 // Scroll animation observer
@@ -354,4 +443,101 @@ function showFormMessage(type, text) {
   }
   // auto-hide after 6s
   setTimeout(() => { if (c.contains(div)) c.removeChild(div) }, 6000)
+}
+
+// Consent Modal Functions
+function showConsentModal() {
+  const modal = document.getElementById('consentModal')
+  if (modal) {
+    modal.classList.add('active')
+  }
+}
+
+function closeConsentModal() {
+  const modal = document.getElementById('consentModal')
+  if (modal) {
+    modal.classList.remove('active')
+  }
+}
+
+function initConsentModal() {
+  const acceptBtn = document.getElementById('acceptConsent')
+  const rejectBtn = document.getElementById('rejectConsent')
+  
+  if (acceptBtn) {
+    acceptBtn.addEventListener('click', async () => {
+      closeConsentModal()
+      await processReservation()
+    })
+  }
+  
+  if (rejectBtn) {
+    rejectBtn.addEventListener('click', () => {
+      closeConsentModal()
+      showFormMessage('error', 'Debes aceptar el consentimiento informado para realizar la reserva')
+    })
+  }
+  
+  // Close modal on outside click
+  const modal = document.getElementById('consentModal')
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeConsentModal()
+        showFormMessage('error', 'Debes aceptar el consentimiento informado para realizar la reserva')
+      }
+    })
+  }
+}
+
+// Info Modal Functions
+function showInfoModal() {
+  const modal = document.getElementById('infoModal')
+  if (modal) {
+    modal.classList.add('active')
+  }
+}
+
+function closeInfoModal() {
+  const modal = document.getElementById('infoModal')
+  if (modal) {
+    modal.classList.remove('active')
+  }
+}
+
+function initInfoModal() {
+  const infoTrigger = document.getElementById('infoTrigger')
+  const closeBtn = document.getElementById('closeInfoBtn')
+  const closeX = document.getElementById('closeInfoModal')
+  const modal = document.getElementById('infoModal')
+  
+  // Open modal
+  if (infoTrigger) {
+    infoTrigger.addEventListener('click', () => {
+      showInfoModal()
+    })
+  }
+  
+  // Close with button
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      closeInfoModal()
+    })
+  }
+  
+  // Close with X
+  if (closeX) {
+    closeX.addEventListener('click', () => {
+      closeInfoModal()
+    })
+  }
+  
+  // Close on outside click
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeInfoModal()
+      }
+    })
+  }
 }

@@ -98,25 +98,6 @@
       </div>
     </section>
 
-    <section id="testimonios" class="container testimonials fade-in-section">
-      <h2>Testimonios</h2>
-      <div class="grid">
-        <div class="card">
-          <p>"Las sesiones de breathwork me ayudaron a soltar tensiones que llevaba años acumulando. Gracias AMAUNA."
-          </p>
-          <small>— Camila, Santiago</small>
-        </div>
-        <div class="card">
-          <p>"Mejoré mi sueño y aprendí herramientas para la ansiedad. Atención cálida y profesional."</p>
-          <small>— Pablo, Valparaíso</small>
-        </div>
-        <div class="card">
-          <p>"La combinación de psicoterapia y meditación fue transformadora para mi proceso."</p>
-          <small>— María, Concepción</small>
-        </div>
-      </div>
-    </section>
-
     <section id="que-es-breathwork" class="container breathwork-info fade-in-section">
       <h2>¿Qué es el Breathwork?</h2>
       <div class="breathwork-grid">
@@ -145,7 +126,24 @@
         </div>
       </div>
     </section>
-
+    <section id="testimonios" class="container testimonials fade-in-section">
+      <h2>Testimonios</h2>
+      <div class="grid">
+        <div class="card">
+          <p>"Las sesiones de breathwork me ayudaron a soltar tensiones que llevaba años acumulando. Gracias AMAUNA."
+          </p>
+          <small>— Camila, Santiago</small>
+        </div>
+        <div class="card">
+          <p>"Mejoré mi sueño y aprendí herramientas para la ansiedad. Atención cálida y profesional."</p>
+          <small>— Pablo, Valparaíso</small>
+        </div>
+        <div class="card">
+          <p>"La combinación de psicoterapia y meditación fue transformadora para mi proceso."</p>
+          <small>— María, Concepción</small>
+        </div>
+      </div>
+    </section>
     <section id="agendar" class="container agendar fade-in-section">
       <h2>Agendar hora</h2>
       <div class="form-grid">
@@ -157,7 +155,13 @@
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
 
+          <div class="info-trigger" id="infoTrigger">
+            📋 INSCRIPCIÓN E INFORMACIÓN
+          </div>
+
           <label>Nombre completo <input type="text" name="name" id="name" required></label>
+          <label>RUT <input type="text" name="rut" id="rut" placeholder="12.345.678-9"></label>
+          <label>Edad <input type="number" name="edad" id="edad" min="1" max="120" placeholder="Ej: 25"></label>
           <label>Email <input type="email" name="email" id="email" required></label>
           <label>Teléfono <input type="tel" name="phone" id="phone"></label>
           <label>Servicio
@@ -167,6 +171,68 @@
               <option value="Psicologia">Psicoterapia</option>
             </select>
           </label>
+          
+          <div class="diagnosticos-wrapper">
+            <label class="diagnosticos-label">Diagnósticos médicos</label>
+            <div class="diagnosticos-trigger" id="diagnosticosTrigger">
+              <span>¿Tienes actualmente uno de los siguientes diagnósticos?</span>
+              <span class="arrow">▼</span>
+            </div>
+            
+            <div class="diagnosticos-selected" id="diagnosticosSelected"></div>
+            
+            <div class="diagnosticos-dropdown" id="diagnosticosDropdown">
+              <label class="diagnostico-option">
+                <input type="checkbox" name="diagnosticos" value="Embarazo">
+                <span>Embarazo</span>
+              </label>
+              <label class="diagnostico-option">
+                <input type="checkbox" name="diagnosticos" value="Epilepsia">
+                <span>Epilepsia</span>
+              </label>
+              <label class="diagnostico-option">
+                <input type="checkbox" name="diagnosticos" value="Convulsiones">
+                <span>Convulsiones</span>
+              </label>
+              <label class="diagnostico-option">
+                <input type="checkbox" name="diagnosticos" value="Problemas Cardiovasculares">
+                <span>Problemas Cardiovasculares (incluidos anginas de pecho o ataques cardíacos)</span>
+              </label>
+              <label class="diagnostico-option">
+                <input type="checkbox" name="diagnosticos" value="Presión arterial alta">
+                <span>Presión arterial alta</span>
+              </label>
+              <label class="diagnostico-option">
+                <input type="checkbox" name="diagnosticos" value="Aneurisma">
+                <span>Aneurisma</span>
+              </label>
+              <label class="diagnostico-option">
+                <input type="checkbox" name="diagnosticos" value="Glaucoma">
+                <span>Glaucoma</span>
+              </label>
+              <label class="diagnostico-option">
+                <input type="checkbox" name="diagnosticos" value="Desprendimiento de retina">
+                <span>Desprendimiento de retina</span>
+              </label>
+              <label class="diagnostico-option">
+                <input type="checkbox" name="diagnosticos" value="Osteoporosis o lesiones físicas">
+                <span>Osteoporosis o lesiones físicas</span>
+              </label>
+              <label class="diagnostico-option">
+                <input type="checkbox" name="diagnosticos" value="Cirugías o enfermedades recientes">
+                <span>Cirugías o enfermedades recientes (cerebro, boca, nariz, dientes, garganta, tiroides, sistema inmunitario, sistema linfático, pulmones, tórax, costillas, columna vertebral, cuello y u órganos reproductores)</span>
+              </label>
+              <label class="diagnostico-option">
+                <input type="checkbox" name="diagnosticos" value="Antecedentes de enfermedad mental">
+                <span>Antecedentes personales de enfermedad mental, trastornos de personalidad, hospitalización por cualquier condición psiquiátrica o crisis emocional, tendencias suicidas o psicosis</span>
+              </label>
+              <label class="diagnostico-option diagnostico-nada">
+                <input type="checkbox" name="diagnosticos" value="NADA" id="diagnostico-nada">
+                <span><strong>NADA</strong></span>
+              </label>
+            </div>
+          </div>
+          
           <label>Fecha <input type="date" name="date" id="date" required></label>
           <label>Hora
             <select id="time" name="time" required>
@@ -207,6 +273,81 @@
       </div>
     </section>
   </main>
+
+  <!-- Modal de Consentimiento Informado -->
+  <div id="consentModal" class="modal">
+    <div class="modal-content">
+      <h2>CONSENTIMIENTO INFORMADO</h2>
+      <div class="modal-body">
+        <p>Yo, certifico que soy un adulto competente de al menos 18 años o que si soy un menor de 18 años, entiendo que también se requerirá el consentimiento de mi padre/tutor legal/persona que tiene la custodia legal antes de la sesión.</p>
+
+        <p>Este Consentimiento Informado se otorga libre y voluntariamente y será vinculante para mi cónyuge, parientes, representantes legales, herederos y administradores.</p>
+
+        <p>Certifico que tengo la salud física, emocional y mental adecuada para participar en una sesión de Breathwork.</p>
+
+        <p>Reconozco que si esta información cambia, es mi única responsabilidad notificar a mi Facilitador de Breathwork Consuelo Lastra Millán, de ahora en adelante llamado en este documento El Facilitador.</p>
+
+        <p>Doy mi consentimiento y autorizo al facilitador a que me guíe en una sesión de trabajo de respiración consciente según lo especificado por mi facilitador. Esta sesión puede incluir sanación energética, tonificación vocal, tapping, trabajo táctil y apoyo de integración del proceso mediante el coaching.</p>
+
+        <p>Entiendo que El Facilitador no es un médico y no brinda asesoramiento médico ni prescribe el uso de ninguna técnica como una forma de tratamiento para cualquier condición física o psicológica sin el consejo de un médico, ya sea directa o indirectamente.</p>
+
+        <p>Como facilitador de Breathwork, el facilitador ofrece información de naturaleza general para ayudar a los clientes en su viaje hacia una mayor autoconciencia, conexión mente-cuerpo, bienestar emocional, mental, físico y espiritual y el facilitador no asume ninguna responsabilidad por cómo yo (el cliente) puede utilizar esta información.</p>
+
+        <p><strong>No se recomienda el trabajo de respiración consciente para personas con:</strong> epilepsia, convulsiones, problemas cardiovasculares, incluidos angina de pecho o ataques cardíacos, presión arterial alta, aneurismas, glaucoma, desprendimiento de retina, osteoporosis o lesiones físicas, cirugías o enfermedades recientes, especialmente en el cerebro, la boca, los dientes, nariz, garganta, tiroides, sistema inmunitario, sistema linfático, pulmones, tórax, costillas, columna vertebral, cuello y/u órganos reproductores.</p>
+
+        <p><strong>El trabajo de respiración no se recomienda para personas con:</strong> antecedentes personales de enfermedad mental, trastornos de personalidad, hospitalización por cualquier condición psiquiátrica o crisis emocional, tendencias suicidas o psicosis.</p>
+
+        <p><strong>Los posibles efectos secundarios pueden incluir:</strong> mareos, cambios en la temperatura corporal, desorientación, hormigueo, espasmos corporales, calambres, liberaciones emocionales, sensación de activación y/o vulnerabilidad física, mental, energética y/o emocional.</p>
+
+        <p>Se me ha explicado la naturaleza del servicio/sesión y/o está disponible para mí por escrito y todas las preguntas que tenía con respecto a la(s) sesión(es) han sido respondidas a mi entera satisfacción.</p>
+
+        <p>Entiendo que tengo derecho a negarme a participar en la sesión. No se me ha hecho ninguna garantía, garantía o seguridad en cuanto a los resultados que se pueden obtener. Certifico que la información anterior es correcta a mi leal saber y entender.</p>
+
+        <p>Acepto adherirme a todas las precauciones y regulaciones de seguridad durante mis sesiones con El Facilitador.</p>
+
+        <p>No responsabilizaré al Facilitador, ni a The Breath Act ®, ni a ninguna empresa asociada, ni a los miembros de su personal por ningún error u omisión que pueda haber cometido al completar este formulario o proceso vivido durante las sesiones.</p>
+      </div>
+      
+      <div class="modal-actions">
+        <button type="button" class="btn" id="acceptConsent">Acepto</button>
+        <button type="button" class="btn ghost" id="rejectConsent">No acepto</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Información e Inscripción -->
+  <div id="infoModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeInfoModal">×</button>
+      <h2>INSCRIPCIÓN SESIÓN BREATHWORK</h2>
+      <div class="modal-body">
+        <p>Hola, soy <strong>Consuelo Lastra</strong>, Psicóloga especialista en trauma y fundadora de <strong>AMAUNA Breathwork</strong> facilitadora certificada The BreathAct.</p>
+
+        <p>Si llegaste hasta aquí, probablemente estás buscando algo distinto, una herramienta que te acompañe en tu camino de autoconocimiento y bienestar.</p>
+
+        <p>Quiero contarte brevemente sobre el <strong>Breathwork</strong>, una técnica de respiración consciente que te permite liberar emociones acumuladas, regular tu sistema nervioso, disminuir el estrés y reconectar con tu interior.</p>
+
+        <p>Vivimos en un mundo acelerado, que muchas veces nos empuja a desconectarnos de nuestro cuerpo y nuestras emociones. Y cuando nos desconectamos, no solo dejamos de sentir lo difícil, sino también lo bello de la vida.</p>
+
+        <div class="info-benefits">
+          <h3>En una sesión de AMAUNA Breathwork podrás:</h3>
+          <ul>
+            <li>✨ Conectar profundamente contigo</li>
+            <li>✨ Reprogramar tu mente</li>
+            <li>✨ Potenciar tu creatividad</li>
+            <li>✨ Mejorar tu atención y concentración</li>
+            <li>✨ Y, sobre todo, aprender a usar tu respiración como herramienta para tu día a día</li>
+          </ul>
+        </div>
+
+        <p class="info-invitation">Te invito a regalarte este espacio y comenzar con algo simple: completa este formulario para que podamos conocernos mejor.</p>
+      </div>
+      
+      <div class="modal-actions">
+        <button type="button" class="btn" id="closeInfoBtn">Entendido</button>
+      </div>
+    </div>
+  </div>
 
   <footer class="site-footer">
     <div class="container footer-content">
