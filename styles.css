@@ -72,7 +72,8 @@ h2::after{content:'';display:block;width:64px;height:6px;background:linear-gradi
 .form-grid{display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:start}
 .booking-form{background:linear-gradient(180deg,#ffffff,#fbfffb);padding:22px;border-radius:14px;box-shadow:0 14px 32px rgba(3,15,20,0.06)}
 .booking-form label{display:block;margin-bottom:10px;color:#0f172a}
-.booking-form input,.booking-form select{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ee;margin-top:6px}
+.booking-form input,.booking-form select,.booking-form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ee;margin-top:6px;font-family:inherit}
+.booking-form textarea{resize:vertical;font-size:0.95rem}
 .actions{display:flex;gap:10px;margin-top:10px}
 .btn{background:var(--accent);color:white;border:none;padding:10px 14px;border-radius:8px;cursor:pointer}
 .btn.ghost{background:transparent;border:1px solid #e6e9ee;color:var(--muted)}
