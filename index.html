@@ -27,16 +27,12 @@
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero hero--bg">
       <div class="container">
         <div class="hero-inner">
-          <div class="hero-visual">
-            <img src="assets/hero.svg" alt="Respiración y calma" />
-          </div>
-          <div class="hero-copy">
+          <div class="hero-copy hero-card">
             <h1>AMAUNA — Equilibrio a través de la respiración y la mente</h1>
-            <p>Sesiones de meditación, breathwork y psicología diseñadas para acompañarte en tu proceso. Ofrecemos
-              sesiones presenciales y online para todo Chile.</p>
+            <p>Sesiones de meditación, breathwork y psicología diseñadas para acompañarte en tu proceso. Ofrecemos sesiones presenciales y online para todo Chile.</p>
             <a class="cta" href="#agendar">Agendar hora</a>
           </div>
         </div>
@@ -58,6 +54,25 @@
           <h3>Psicoterapia</h3>
           <p>Apoyo profesional en procesos personales, duelo, ansiedad y manejo emocional.</p>
         </article>
+      </div>
+    </section>
+
+    <section id="respiracion" class="container section--alt respiracion">
+      <h2>Cómo la respiración afecta al cuerpo</h2>
+      <div class="resp-grid">
+        <div class="resp-chart">
+          <canvas id="breathChart" width="400" height="300" aria-label="Gráfico de reducción de estrés con respiración" role="img"></canvas>
+        </div>
+        <div class="resp-copy">
+          <h3>Respirar para reducir estrés</h3>
+          <p>La respiración consciente activa el sistema nervioso parasimpático, reduciendo la frecuencia cardíaca, la presión arterial y los niveles de cortisol — la hormona del estrés. En sesiones estructuradas de breathwork observamos una disminución sostenida del estado de activación y una mayor sensación de calma.</p>
+          <p>En el gráfico a la izquierda se muestra un ejemplo hipotético: durante los primeros minutos de respiración dirigida el nivel de estrés (medido aquí como una escala relativa) disminuye de forma pronunciada y se estabiliza en niveles más bajos. Esto ilustra por qué prácticas regulares ayudan a manejar la reactividad y mejorar el bienestar.</p>
+          <ul>
+            <li><strong>0–2 min:</strong> transición inicial, disminución rápida de tensión.</li>
+            <li><strong>3–6 min:</strong> estabilización del ritmo cardíaco y respiratorio.</li>
+            <li><strong>7+ min:</strong> sensación de calma y menor reactividad emocional.</li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -160,6 +175,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="app.js" type="module"></script>
 </body>
 

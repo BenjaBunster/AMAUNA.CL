@@ -1,3 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Simple illustrative SVG: person breathing on a mountain at sunset (back view) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Persona respirando en una montaña al atardecer</title>
+  <desc id="desc">Ilustración estilizada mostrando una persona de espaldas en la cima de una montaña observando un atardecer cálido.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#FFDAC1"/>
+      <stop offset="45%" stop-color="#FFD1A9"/>
+      <stop offset="100%" stop-color="#8BC6EC"/>
+    </linearGradient>
+    <linearGradient id="sunGlow" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#FFE6A7" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#FFC3A3" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky background -->
+  <rect width="1200" height="700" fill="url(#sky)" />
+
+  <!-- Distant mountains -->
+  <g transform="translate(0,120)">
+    <path d="M0 520 L160 380 L320 480 L480 360 L640 460 L800 340 L1000 480 L1200 360 L1200 700 L0 700 Z" fill="#6FA3D8" opacity="0.18" />
+    <path d="M0 580 L200 420 L420 540 L640 400 L860 520 L1080 390 L1200 520 L1200 700 L0 700 Z" fill="#4E86C1" opacity="0.12" />
+  </g>
+
+  <!-- Sun -->
+  <circle cx="860" cy="200" r="70" fill="#FFD27A" />
+  <circle cx="860" cy="200" r="140" fill="url(#sunGlow)" />
+
+  <!-- Foreground mountain (closer) -->
+  <path d="M0 700 L180 460 L360 560 L540 420 L720 600 L900 440 L1200 700 Z" fill="#2F6E5E" />
+
+  <!-- Person (silhouette back view) -->
+  <g transform="translate(540,360)">
+    <!-- cloak/body -->
+    <path d="M0 120 C-18 80 -36 40 -22 0 C-12 -20 10 -28 28 -24 C44 -20 58 -6 68 12 C80 36 92 84 72 120 Z" fill="#0F3D38" transform="translate(-46,0) scale(1.6)" />
+    <!-- head -->
+    <circle cx="22" cy="-18" r="22" fill="#0F3D38" transform="translate(-46,0) scale(1.6)" />
+    <!-- subtle highlight on shoulder -->
+    <ellipse cx="14" cy="46" rx="26" ry="10" fill="#0C5047" opacity="0.12" transform="translate(-46,0) scale(1.6)" />
+  </g>
+
+  <!-- Ground near person -->
+  <ellipse cx="600" cy="660" rx="320" ry="40" fill="rgba(0,0,0,0.06)" />
+
+  <!-- Minimal plants for atmosphere -->
+  <g fill="#113F36" opacity="0.9">
+    <path d="M200 640 C200 620 210 600 212 596 C214 600 222 620 224 640 Z" />
+    <path d="M980 640 C980 620 970 600 968 596 C966 600 958 620 956 640 Z" />
+  </g>
+
+</svg>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480">
   <defs>
     <linearGradient id="g1" x1="0" x2="1">

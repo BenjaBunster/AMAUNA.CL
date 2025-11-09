@@ -143,6 +143,75 @@ function setMinDate() {
   dateEl.min = todayISO()
 }
 
+// emit several emoji particles (simple DOM-based animation) near the form message
+function emitEmojiBurst(emoji = '🧘🏻', count = 8) {
+  const container = document.getElementById('formMessage') || document.body
+  const rect = container.getBoundingClientRect()
+  const cx = rect.left + rect.width / 2
+  const cy = rect.top + rect.height / 2
+  for (let i = 0; i < count; i++) {
+    const span = document.createElement('div')
+    span.className = 'emoji-particle'
+    span.textContent = emoji
+    // random start near center
+    const spread = 80
+    const sx = cx + (Math.random() - 0.5) * 60
+    const sy = cy + (Math.random() - 0.5) * 20
+    span.style.left = Math.round(sx) + 'px'
+    span.style.top = Math.round(sy) + 'px'
+    // random size
+    span.style.fontSize = (18 + Math.floor(Math.random() * 20)) + 'px'
+    document.body.appendChild(span)
+    // force layout then animate
+    requestAnimationFrame(() => {
+      const dx = (Math.random() - 0.5) * spread
+      const dy = -(120 + Math.random() * 180)
+      const rot = (Math.random() - 0.5) * 720
+      span.style.transform = `translate(${dx}px, ${dy}px) rotate(${rot}deg)`
+      span.style.opacity = '0'
+    })
+    // cleanup
+    setTimeout(() => { if (span && span.parentNode) span.parentNode.removeChild(span) }, 1400 + Math.random() * 300)
+  }
+}
+
+// render a simple example chart showing stress decreasing during guided breathing
+function renderBreathChart() {
+  const canvas = el('breathChart')
+  if (!canvas || typeof Chart === 'undefined') return
+  const ctx = canvas.getContext('2d')
+  const labels = Array.from({ length: 11 }, (_, i) => `${i}m`)
+  const data = [80, 72, 65, 58, 52, 48, 46, 45, 44, 43, 42]
+  // create gradient
+  const grad = ctx.createLinearGradient(0, 0, 0, canvas.height)
+  grad.addColorStop(0, 'rgba(103,183,167,0.28)')
+  grad.addColorStop(1, 'rgba(103,183,167,0.02)')
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Nivel de estrés (relativo)',
+        data,
+        fill: true,
+        backgroundColor: grad,
+        borderColor: '#2f9a87',
+        pointBackgroundColor: '#fff',
+        tension: 0.28,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: false, suggestedMin: 30, suggestedMax: 90 }
+      },
+      plugins: { legend: { display: false } }
+    }
+  })
+}
+
 async function handleSubmit(e) {
   // Always prevent default to avoid navigation or reload
   e.preventDefault()
@@ -225,6 +294,8 @@ async function init() {
   el('year').textContent = new Date().getFullYear()
   setMinDate()
   await renderAppointments()
+  // render the breathing chart (if Chart.js loaded)
+  try{ renderBreathChart() }catch(e){/* ignore */}
   document.getElementById('bookingForm').addEventListener('submit', handleSubmit)
   el('clearBtn').addEventListener('click', () => { document.getElementById('bookingForm').reset(); setMinDate() })
   el('clearAll').addEventListener('click', clearAll)
@@ -251,6 +322,8 @@ function showFormMessage(type, text) {
         setTimeout(() => { window.confetti({ particleCount: 40, spread: 100, origin: { y: 0.6 } }) }, 250)
       }
     } catch (e) { console.warn('Confetti failed', e) }
+    // emoji burst as decorative particles
+    try { emitEmojiBurst('🧘🏻', 10) } catch (e) { /* ignore */ }
   }
   // auto-hide after 6s
   setTimeout(() => { if (c.contains(div)) c.removeChild(div) }, 6000)
