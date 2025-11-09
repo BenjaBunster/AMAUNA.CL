@@ -21,7 +21,10 @@ body {
   height: 100%;
   margin: 0;
   font-family: Inter, system-ui, "Segoe UI", Arial, sans-serif;
-  background: linear-gradient(180deg, #F6F7D3 0%, #A7D3BC 100%);
+  background: linear-gradient(180deg, #F6F7D3 0%, #A7D3BC 100%) fixed;
+  background-size: 100% 100vh;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: #372631
 }
 
@@ -516,6 +519,12 @@ h2::after {
   font-size: 1.1rem;
   margin: 0 0 16px;
   font-weight: 600;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .social-link {
