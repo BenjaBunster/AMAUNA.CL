@@ -14,15 +14,42 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="#">
-        <img src="assets/logo.png" alt="AMAUNA logo" class="logo">  
+        <img src="assets/logo.png" alt="AMAUNA logo" class="logo">
+        <div class="brand-text">
+          <span class="brand-name">AMAUNA</span>
+          <span class="brand-tagline">Breathwork & Terapias</span>
+        </div>
       </a>
       <nav class="nav">
-        <a href="#servicios">Servicios</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#agendar">Agendar</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#servicios" class="nav-link">
+          <span class="nav-icon">🧘</span>
+          <span>Servicios</span>
+        </a>
+        <a href="#sobre" class="nav-link">
+          <span class="nav-icon">💚</span>
+          <span>Sobre</span>
+        </a>
+        <a href="#agendar" class="nav-link nav-link--cta">
+          <span class="nav-icon">📅</span>
+          <span>Agendar</span>
+        </a>
+        <a href="#footer" class="nav-link">
+          <span class="nav-icon">✉️</span>
+          <span>Contacto</span>
+        </a>
       </nav>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="#servicios" class="mobile-nav-link">🧘 Servicios</a>
+      <a href="#sobre" class="mobile-nav-link">💚 Sobre</a>
+      <a href="#agendar" class="mobile-nav-link">📅 Agendar</a>
+      <a href="#footer" class="mobile-nav-link">✉️ Contacto</a>
+    </nav>
   </header>
 
   <main>
@@ -349,11 +376,11 @@
     </div>
   </div>
 
-  <footer class="site-footer">
+  <footer class="site-footer" id="footer">
     <div class="container footer-content">
       <div class="footer-info">
         <h3>AMAUNA</h3>
-        <p>Terapias de meditación, respiración y psicología en Chile</p>
+        <p>Terapias de meditación, respiración y psicología</p>
       </div>
       <div class="footer-links">
         <h4>Contáctanos</h4>
@@ -378,6 +405,13 @@
       </div>
     </div>
   </footer>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Volver arriba">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>

@@ -316,8 +316,20 @@ async function init() {
   // Initialize info modal
   initInfoModal()
   
+  // Initialize mobile menu
+  initMobileMenu()
+  
+  // Initialize header scroll effect
+  initHeaderScroll()
+  
   // Initialize scroll animations
   initScrollAnimations()
+  
+  // Initialize smooth scroll with offset
+  initSmoothScroll()
+  
+  // Initialize scroll to top button
+  initScrollToTop()
 }
 
 // Handle diagnostics checkboxes (NADA is exclusive)
@@ -541,3 +553,108 @@ function initInfoModal() {
     })
   }
 }
+
+// Mobile Menu Functions
+function initMobileMenu() {
+  const toggle = document.getElementById('mobileMenuToggle')
+  const mobileNav = document.getElementById('mobileNav')
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link')
+  
+  if (!toggle || !mobileNav) return
+  
+  // Toggle menu
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('active')
+    mobileNav.classList.toggle('active')
+  })
+  
+  // Close menu when clicking a link
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      toggle.classList.remove('active')
+      mobileNav.classList.remove('active')
+    })
+  })
+  
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!toggle.contains(e.target) && !mobileNav.contains(e.target)) {
+      toggle.classList.remove('active')
+      mobileNav.classList.remove('active')
+    }
+  })
+}
+
+// Header Scroll Effect
+function initHeaderScroll() {
+  const header = document.querySelector('.site-header')
+  if (!header) return
+  
+  let lastScroll = 0
+  
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset
+    
+    // Add scrolled class when scrolling down
+    if (currentScroll > 50) {
+      header.classList.add('scrolled')
+    } else {
+      header.classList.remove('scrolled')
+    }
+    
+    lastScroll = currentScroll
+  })
+}
+
+// Smooth Scroll with Header Offset
+function initSmoothScroll() {
+  const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link')
+  const headerHeight = 80 // Approximate header height
+  
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href')
+      
+      // Check if it's an internal anchor link
+      if (href && href.startsWith('#')) {
+        e.preventDefault()
+        
+        const targetId = href.substring(1)
+        const targetSection = document.getElementById(targetId)
+        
+        if (targetSection) {
+          const targetPosition = targetSection.offsetTop - headerHeight
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          })
+        }
+      }
+    })
+  })
+}
+
+// Scroll to Top Button
+function initScrollToTop() {
+  const scrollBtn = document.getElementById('scrollToTop')
+  if (!scrollBtn) return
+  
+  // Show/hide button based on scroll position
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      scrollBtn.classList.add('visible')
+    } else {
+      scrollBtn.classList.remove('visible')
+    }
+  })
+  
+  // Scroll to top when clicked
+  scrollBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  })
+}
+
