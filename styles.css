@@ -445,6 +445,86 @@ h2::after {
   border: 2px solid rgba(203, 152, 195, 0.4);
 }
 
+/* Breathwork Info Section */
+.breathwork-info {
+  padding: 80px 0;
+}
+
+.breathwork-info h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  color: #372631;
+}
+
+.breathwork-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.breathwork-content h3 {
+  font-size: 1.6rem;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.breathwork-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: #372631;
+}
+
+.breathwork-content ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 25px 0;
+}
+
+.breathwork-content ul li {
+  padding-left: 30px;
+  position: relative;
+  margin-bottom: 15px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #372631;
+}
+
+.breathwork-content ul li::before {
+  content: '●';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.breathwork-cta {
+  background: linear-gradient(135deg, rgba(167, 211, 188, 0.2), rgba(203, 152, 195, 0.2));
+  padding: 20px;
+  border-radius: 12px;
+  border-left: 4px solid var(--accent);
+  margin-top: 30px;
+  font-size: 1.1rem;
+}
+
+.breathwork-video {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.breathwork-video video {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(55, 38, 49, 0.3);
+  border: 3px solid;
+  border-image: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent)) 1;
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 360px;
@@ -718,6 +798,15 @@ h2::after {
 
   .presentacion-text p {
     font-size: 1rem;
+  }
+
+  .breathwork-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .breathwork-video {
+    order: -1;
   }
 
   .footer-content {
