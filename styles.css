@@ -253,16 +253,17 @@ main {
   display: none;
   flex-direction: column;
   gap: 8px;
-  padding: 20px;
+  padding: 0 20px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(246, 247, 211, 0.95));
   border-top: 2px solid rgba(167, 211, 188, 0.3);
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease;
+  transition: max-height 0.3s ease, padding 0.3s ease;
 }
 
 .mobile-nav.active {
-  max-height: 400px;
+  max-height: 500px;
+  padding: 20px;
 }
 
 .mobile-nav-link {
@@ -1356,6 +1357,14 @@ h2::after {
   .site-header {
     padding: 12px 0;
   }
+  
+  .site-header.scrolled {
+    padding: 0;
+  }
+  
+  .site-header.scrolled:hover {
+    padding: 10px 0;
+  }
 
   .brand-name {
     font-size: 1.3rem;
@@ -1379,6 +1388,15 @@ h2::after {
 
   .mobile-nav {
     display: flex;
+  }
+  
+  .mobile-nav.active {
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+  
+  .header-inner {
+    padding: 0 16px;
   }
 
   .form-grid {
