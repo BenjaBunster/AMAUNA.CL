@@ -121,7 +121,7 @@ main {
 }
 
 .logo {
-  width: 65px;
+  width: 120px;
   height: auto;
   filter: drop-shadow(0 2px 4px rgba(55, 38, 49, 0.1));
   transition: filter 0.3s ease;
