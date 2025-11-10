@@ -731,8 +731,9 @@ function initAtencionSelector() {
         psicologicaSchedule.style.display = 'block'
         breathworkSchedule.style.display = 'none'
         
-        // Set service to Psicoterapia
+        // Set service to Psicoterapia and disable it
         serviceSelect.value = 'Psicologia'
+        serviceSelect.disabled = true
         
         // Enable/disable inputs
         dateInput.required = true
@@ -744,8 +745,9 @@ function initAtencionSelector() {
         psicologicaSchedule.style.display = 'none'
         breathworkSchedule.style.display = 'block'
         
-        // Set service to Breathwork
+        // Set service to Breathwork and disable it
         serviceSelect.value = 'Breathwork'
+        serviceSelect.disabled = true
         
         // Enable/disable inputs
         dateInput.required = false
