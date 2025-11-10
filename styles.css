@@ -1064,16 +1064,29 @@ h2::after {
 
 .footer-content {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 32px;
-  align-items: start;
+  align-items: center;
 }
 
-.footer-info h3 {
-  color: var(--primary);
-  font-size: 1.8rem;
-  margin: 0 0 12px;
-  font-weight: 700;
+.footer-logo-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-logo-text {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  opacity: 0.9;
+  filter: brightness(1.3);
+}
+
+.footer-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .footer-info p {
@@ -1410,6 +1423,10 @@ h2::after {
     grid-template-columns: 1fr;
     gap: 24px;
     text-align: center;
+  }
+
+  .footer-logo-text {
+    max-width: 180px;
   }
 
   .footer-copy {
