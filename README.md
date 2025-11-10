@@ -1,4 +1,4 @@
-# AMAUNA — Sitio estático (Demo)
+# AMAUNA — Sitio estático 
 
 Sitio web estático para AMAUNA (Chile) con servicios de meditación, breathwork y psicoterapia. Incluye funcionalidad básica de agendar horas almacenadas localmente en el navegador (localStorage).
 
@@ -33,7 +33,7 @@ Se agregó un backend simple en Node/Express para persistir reservas en `appoint
 Comandos (PowerShell):
 
 ```powershell
-Set-Location 'c:\Users\kayze\Desktop\PROGRAMACION\Prueba ia vc'
+Set-Location 'c:\Users\kayze\Desktop\PROGRAMACION\'
 npm install
 npm start
 # luego abrir http://localhost:3000

@@ -369,6 +369,9 @@ async function init() {
   
   // Initialize scroll to top button
   initScrollToTop()
+  
+  // Initialize attention type selector
+  initAtencionSelector()
 }
 
 // Handle diagnostics checkboxes (NADA is exclusive)
@@ -696,4 +699,74 @@ function initScrollToTop() {
     })
   })
 }
+
+// Attention Type Selector
+function initAtencionSelector() {
+  const buttons = document.querySelectorAll('.atencion-btn')
+  const tipoAtencionInput = document.getElementById('tipoAtencion')
+  const psicologicaSchedule = document.getElementById('psicologicaSchedule')
+  const breathworkSchedule = document.getElementById('breathworkSchedule')
+  const dateInput = document.getElementById('date')
+  const timeInput = document.getElementById('time')
+  const breathworkSessionInput = document.getElementById('breathworkSession')
+  const dateBreathworkInput = document.getElementById('dateBreathwork')
+  const timeBreathworkInput = document.getElementById('timeBreathwork')
+  const serviceSelect = document.getElementById('service')
+  
+  if (!buttons.length) return
+  
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove active class from all buttons
+      buttons.forEach(btn => btn.classList.remove('active'))
+      
+      // Add active class to clicked button
+      button.classList.add('active')
+      
+      const tipo = button.getAttribute('data-tipo')
+      tipoAtencionInput.value = tipo
+      
+      if (tipo === 'psicologica') {
+        // Show psicologica schedule (free time selection)
+        psicologicaSchedule.style.display = 'block'
+        breathworkSchedule.style.display = 'none'
+        
+        // Set service to Psicoterapia
+        serviceSelect.value = 'Psicologia'
+        
+        // Enable/disable inputs
+        dateInput.required = true
+        timeInput.required = true
+        breathworkSessionInput.required = false
+        breathworkSessionInput.disabled = true
+      } else if (tipo === 'breathwork') {
+        // Show breathwork schedule (predefined sessions)
+        psicologicaSchedule.style.display = 'none'
+        breathworkSchedule.style.display = 'block'
+        
+        // Set service to Breathwork
+        serviceSelect.value = 'Breathwork'
+        
+        // Enable/disable inputs
+        dateInput.required = false
+        timeInput.required = false
+        breathworkSessionInput.required = true
+        breathworkSessionInput.disabled = false
+      }
+    })
+  })
+  
+  // Handle breathwork session selection
+  if (breathworkSessionInput) {
+    breathworkSessionInput.addEventListener('change', (e) => {
+      const value = e.target.value
+      if (value) {
+        const [date, time] = value.split(' ')
+        dateBreathworkInput.value = date
+        timeBreathworkInput.value = time
+      }
+    })
+  }
+}
+
 

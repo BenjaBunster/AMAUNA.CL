@@ -178,6 +178,19 @@
     </section>
     <section id="agendar" class="container agendar fade-in-section">
       <h2>Agendar hora</h2>
+      
+      <!-- Selector de tipo de atención -->
+      <div class="atencion-selector">
+        <button type="button" class="atencion-btn active" data-tipo="psicologica">
+          <span class="atencion-icon">🧠</span>
+          <span class="atencion-text">ATENCIÓN PSICOLÓGICA</span>
+        </button>
+        <button type="button" class="atencion-btn" data-tipo="breathwork">
+          <span class="atencion-icon">🌬️</span>
+          <span class="atencion-text">SESIÓN BREATHWORK</span>
+        </button>
+      </div>
+      
       <div class="form-grid">
         <!-- CORREO WEB, DONDE LLAGAN FORMULARIOS (SOLO EDIT CORR)-->
         <form id="bookingForm" class="booking-form" autocomplete="off"
@@ -186,6 +199,7 @@
           <input type="hidden" name="_subject" value="Nueva reserva AMAUNA">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="tipo_atencion" id="tipoAtencion" value="psicologica">
 
           <div class="info-trigger" id="infoTrigger">
             📋 INSCRIPCIÓN E INFORMACIÓN
@@ -198,7 +212,6 @@
           <label>Teléfono <input type="tel" name="phone" id="phone"></label>
           <label>Servicio
             <select id="service" name="service">
-              <option value="Meditacion">Meditación guiada</option>
               <option value="Breathwork">Breathwork (Respiración)</option>
               <option value="Psicologia">Psicoterapia</option>
             </select>
@@ -265,25 +278,41 @@
             </div>
           </div>
           
-          <label>Fecha <input type="date" name="date" id="date" required></label>
-          <label>Hora
-            <select id="time" name="time" required>
-              <option value="">Selecciona una hora</option>
-              <option value="08:00">08:00</option>
-              <option value="09:00">09:00</option>
-              <option value="10:00">10:00</option>
-              <option value="11:00">11:00</option>
-              <option value="12:00">12:00</option>
-              <option value="13:00">13:00</option>
-              <option value="14:00">14:00</option>
-              <option value="15:00">15:00</option>
-              <option value="16:00">16:00</option>
-              <option value="17:00">17:00</option>
-              <option value="18:00">18:00</option>
-              <option value="19:00">19:00</option>
-              <option value="20:00">20:00</option>
-            </select>
-          </label>
+          <!-- Fecha y hora para ATENCIÓN PSICOLÓGICA (horario libre) -->
+          <div id="psicologicaSchedule" class="schedule-section">
+            <label>Fecha <input type="date" name="date" id="date" required></label>
+            <label>Hora
+              <select id="time" name="time" required>
+                <option value="">Selecciona una hora</option>
+                <option value="08:00">08:00</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+                <option value="19:00">19:00</option>
+                <option value="20:00">20:00</option>
+              </select>
+            </label>
+          </div>
+          
+          <!-- Fecha y hora para SESIÓN BREATHWORK (fechas predefinidas) -->
+          <div id="breathworkSchedule" class="schedule-section" style="display: none;">
+            <label>Sesión disponible
+              <select id="breathworkSession" name="breathwork_session" required disabled>
+                <option value="">Selecciona una sesión</option>
+                <option value="2024-12-05 17:00">5 de Diciembre 2024 - 17:00 hrs</option>
+              </select>
+            </label>
+            <input type="hidden" name="date_breathwork" id="dateBreathwork">
+            <input type="hidden" name="time_breathwork" id="timeBreathwork">
+          </div>
+          
           <label>Comentarios / Detalles adicionales <span style="font-size:0.85em;color:var(--muted)">(opcional)</span>
             <textarea id="comments" name="comments" rows="4" placeholder="Cuéntanos más sobre lo que buscas (ej: enfoque en ansiedad, meditación para dormir, etc.)"></textarea>
           </label>
