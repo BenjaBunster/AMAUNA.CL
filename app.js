@@ -239,6 +239,41 @@ async function processReservation() {
   if (!isValidSlot(time)) { showFormMessage('error', 'Horas válidas: 08:00 - 20:00 en pasos de 1 hora (ej: 09:00)'); return }
 
   const appt = { name, email, phone, service, date, time, createdAt: new Date().toISOString() }
+  
+  // Texto del consentimiento informado
+  const consentText = `
+CONSENTIMIENTO INFORMADO - ACEPTADO
+
+El participante ha leído y aceptado el siguiente consentimiento:
+
+Comprendo que el Breathwork (Respiración Consciente Circular Conectada) puede generar intensas experiencias físicas y emocionales, que pueden incluir:
+• Mareos, náuseas, desmayos
+• Hormigueo, calambres, espasmos musculares
+• Angustia emocional, recuerdos traumáticos, alteraciones de conciencia
+
+Por lo tanto, debo informar a mi terapeuta/facilitador sobre cualquier condición médica, psicológica o emocional que pueda verse agravada por la práctica.
+
+DECLARO que NO tengo ninguna de las siguientes condiciones contraindicadas, o que, en caso de tenerlas, informé a mi facilitadora para evaluar mi participación:
+• Embarazo
+• Enfermedades cardiovasculares
+• Presión arterial alta o baja no controlada
+• Historial de aneurismas, convulsiones o ataques
+• Epilepsia
+• Asma severa o enfermedad pulmonar
+• Glaucoma
+• Desprendimiento de retina
+• Osteoporosis o lesiones físicas
+• Cirugías o enfermedades recientes
+• Antecedentes de enfermedad mental, trastornos de personalidad, psicosis o tendencias suicidas
+
+RECONOZCO QUE:
+• El Breathwork NO es un sustituto de atención médica, psicológica o psiquiátrica profesional
+• Soy responsable de mi participación y seguridad
+• Puedo detener la sesión en cualquier momento si siento molestia o malestar
+• Eximo de responsabilidad al facilitador por cualquier consecuencia derivada de mi participación voluntaria
+
+Fecha de aceptación: ${new Date().toLocaleString('es-CL')}
+  `.trim()
 
   // If a backend is available, prefer sending there
   if (await backendAvailable()) {
@@ -266,6 +301,10 @@ async function processReservation() {
     try {
       // send form as FormData to external endpoint to avoid navigation
       const fd = new FormData(form)
+      // Agregar el consentimiento aceptado al formulario
+      fd.append('consentimiento_aceptado', consentText)
+      fd.append('consentimiento_status', 'ACEPTADO')
+      
       // ensure we include the same fields that we saved locally
       // (FormData already contains form inputs because they have name attributes)
       const resp = await fetch(action, { method: 'POST', body: fd })
