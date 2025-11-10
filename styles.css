@@ -1396,7 +1396,15 @@ h2::after {
   }
   
   .header-inner {
-    padding: 0 16px;
+    padding: 0 20px;
+  }
+  
+  .container {
+    padding: 20px 24px;
+  }
+  
+  main {
+    padding-top: 110px;
   }
 
   .form-grid {
@@ -1404,43 +1412,160 @@ h2::after {
   }
 
   .hero-inner {
-    flex-direction: column
+    flex-direction: column;
+    padding: 0 8px;
+  }
+  
+  .hero {
+    padding: 40px 0;
+    min-height: 350px;
   }
 
   .resp-grid {
-    grid-template-columns: 1fr
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  
+  .card {
+    margin: 0 8px;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 24px;
+  }
+  
+  h3 {
+    font-size: 1.3rem;
+  }
+  
+  p {
+    font-size: 1rem;
+    line-height: 1.7;
   }
 
   .presentacion-grid {
     grid-template-columns: 1fr;
     gap: 32px;
+    padding: 0 12px;
   }
 
   .presentacion-image img {
     max-height: 400px;
+    border-radius: 20px;
+  }
+
+  .presentacion-content {
+    padding: 24px 16px;
   }
 
   .presentacion-content h2 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
   }
 
   .presentacion-text p {
-    font-size: 1rem;
+    font-size: 1.05rem;
+    margin-bottom: 16px;
+  }
+  
+  .presentacion-cta-text {
+    font-size: 1.1rem !important;
+    font-weight: 600;
+    padding: 16px;
+    background: linear-gradient(135deg, rgba(167, 211, 188, 0.15), rgba(203, 152, 195, 0.15));
+    border-radius: 12px;
+    border-left: 4px solid var(--primary);
   }
 
   .breathwork-grid {
     grid-template-columns: 1fr;
     gap: 40px;
+    padding: 0 12px;
+  }
+  
+  .breathwork-content {
+    padding: 0 12px;
+  }
+  
+  .breathwork-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+  }
+  
+  .breathwork-content p {
+    font-size: 1.05rem;
+    margin-bottom: 16px;
+  }
+  
+  .breathwork-content ul {
+    padding-left: 24px;
+  }
+  
+  .breathwork-content li {
+    margin-bottom: 12px;
+    font-size: 1rem;
   }
 
   .breathwork-video {
     order: -1;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  
+  .about {
+    padding: 40px 0;
+  }
+  
+  .about .container {
+    padding: 32px 24px;
+  }
+  
+  .servicios {
+    padding: 32px 16px;
+  }
+  
+  .grid {
+    gap: 24px;
+    padding: 0 8px;
+  }
+  
+  .btn {
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    min-height: 52px;
+  }
+  
+  input, select, textarea {
+    font-size: 16px;
+    padding: 14px;
+  }
+  
+  label {
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+  }
+  
+  .mobile-nav-link {
+    padding: 16px 24px;
+    font-size: 1.1rem;
+  }
+  
+  .diagnosticos-trigger {
+    padding: 14px;
+    font-size: 1rem;
+  }
+  
+  .selected-tag {
+    padding: 10px 16px;
+    font-size: 0.95rem;
   }
 
   .footer-content {
     grid-template-columns: 1fr;
     gap: 24px;
     text-align: center;
+    padding: 32px 20px;
   }
 
   .footer-logo-text {
