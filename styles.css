@@ -32,6 +32,14 @@ body {
   color: #372631
 }
 
+p {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  text-justify: inter-word;
+}
+
 main {
   padding-top: 100px;
 }
